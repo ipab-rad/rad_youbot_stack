@@ -1,0 +1,38 @@
+USER INPUT: Number of Base(s) connected to the etherCAT-master: 1
+USER INPUT: Number of Arm(s)  connected to the etherCAT-master: 1
+=========================================================
+----- Topological Information of all slaves: -----
+slave no  1:	BASE-Master:	KR-845		--> parent:  0	--> connections:  3
+slave no  2:	:	TMCM-1632	--> parent:  1	--> connections:  2
+slave no  3:	:	TMCM-1632	--> parent:  2	--> connections:  2
+slave no  4:	:	TMCM-1632	--> parent:  3	--> connections:  2
+slave no  5:	:	TMCM-1632	--> parent:  4	--> connections:  1
+slave no  6:	ARM-Master:	KR-843		--> parent:  1	--> connections:  2
+slave no  7:	:	TMCM-1610	--> parent:  6	--> connections:  2
+slave no  8:	:	TMCM-1610	--> parent:  7	--> connections:  2
+slave no  9:	:	TMCM-1610	--> parent:  8	--> connections:  2
+slave no 10:	:	TMCM-1610	--> parent:  9	--> connections:  2
+slave no 11:	:	TMCM-1610	--> parent: 10	--> connections:  1
+=========================================================
+Number of ALL slaves:           11
+Number of JOINT slaves:         0
+Number of BaseMasterBoards:     1
+Number of BaseSlaveControllers: 0
+Number of ArmMasterBoards:      1
+Number of ArmSlaveControllers:  0
+=========================================================
+----- Topological Information of joints: -----
+=========================================================
+----- Compare number of found base-/arm-masterboard(s) with users input -----
+ --> Number of masterboards equates to user input
+=========================================================
+----- Compare number of controllerboards -----
+Not all slave controller for the base could be found
+Not all slave controller for the arm could be found
+–––––––––––––––––––––––––––––––––––––––
+----- Check, which controllers couldn't be found: -----
+controller of WHEEL #1 from Base #1 was not detected
+controller of AXIS  #1 from ARM #1 was not detected
+=========================================================
+=========================================================
+

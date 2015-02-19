@@ -1,0 +1,9 @@
+#!/bin/bash
+  #location /etc/init.d/
+  sleep 50 #To be sure joystick will be detected
+  #Try of find joypad key
+  JOYPAD_KEY=$(ls -l /dev/input | grep js0)
+  #if joypad key exists, start joypad app
+  if [ -n "$JOYPAD_KEY" ] then   sudo /home/youbot/Git/hydro-ws/src/youbot_applications/joypad_control/youBot_JoypadControl > 
+  /home/youbot/Git/hydro-ws/src/youbot_applications/joypad_control/autostartAppLog.txt
+  fi
