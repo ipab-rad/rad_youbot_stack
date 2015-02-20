@@ -13,20 +13,23 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle n;
 
-  ros::Publisher pub = n.advertise<std_msgs::Int8MultiArray>("/some_publisher", 100);
+  ros::Publisher pub = n.advertise<std_msgs::Int8MultiArray>("/outer_layer", 400);
 
   while (ros::ok())
   {
     // some vectors of vectors here
+    // TODO: ALEX PUT YOUR VECTOR HERE!
     std::vector < std::vector<int> > matrix;
 
     std_msgs::Int8MultiArray matrix_ma;
     matrix_ma.data.clear();
-    int WIDTH_MATRIX = 200;
-    int HEIGHT_MATRIX = 200;
     // linearise matrix
-    for (int i = 0; i < WIDTH_MATRIX*HEIGHT_MATRIX; i++) {
-      matrix_ma.data.push_back(matrix[i / WIDTH_MATRIX][i % WIDTH_MATRIX]);
+    std::vector< std::vector<int> >::iterator r;
+    std::vector<int>::iterator c;
+    for (r = matrix.begin(); r != matrix.end(); r++) {
+      for (c = r->begin(); c != r->end(); c++) {
+        matrix_ma.data.push_back(*c);
+      }
     }
 
     pub.publish(matrix_ma);
