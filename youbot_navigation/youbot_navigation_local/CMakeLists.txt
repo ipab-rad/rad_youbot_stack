@@ -30,6 +30,8 @@ include_directories(
 add_library(simple_layer
   src/simple_layer.cpp
   src/grid_layer.cpp
+)
+add_library(outer_layer
   src/outer_layer.cpp
 )
 
@@ -38,6 +40,10 @@ add_executable(outer_test_pub
 )
 
 target_link_libraries(simple_layer
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(outer_layer
   ${catkin_LIBRARIES}
 )
 

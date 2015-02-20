@@ -1,7 +1,7 @@
 #include <simple_map/outer_layer.h>
 #include <pluginlib/class_list_macros.h>
 
-PLUGINLIB_EXPORT_CLASS(OuterLayer::OuterLayer, costmap_2d::Layer)
+PLUGINLIB_EXPORT_CLASS(outer_layer::OuterLayer, costmap_2d::Layer)
 
 using costmap_2d::LETHAL_OBSTACLE;
 using costmap_2d::NO_INFORMATION;
