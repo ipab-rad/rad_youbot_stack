@@ -43,7 +43,8 @@ void OuterLayer::receive_layer(const std_msgs::Int32MultiArray::ConstPtr& msg)
   int count = 0;
   int r;
   int c;
-  for(std::vector<int>::const_iterator m_it = msg->data.begin(); m_it != msg->data.end(); ++m_it) {
+  for(std::vector<int>::const_iterator m_it = msg->data.begin();
+      m_it != msg->data.end(); ++m_it) {
     r = (count / MATRIX_WIDTH);
     c = (count % MATRIX_WIDTH);
     data_matrix[r][c] = *m_it; // stil an int

@@ -1,0 +1,4 @@
+global_costmap:
+  plugins:
+    - {name: outer_layer, type: 'outer_layer::OuterLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
