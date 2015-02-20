@@ -6,6 +6,7 @@ project(youbot_navigation_local)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  std_msgs
   costmap_2d
   dynamic_reconfigure
 )
@@ -14,7 +15,11 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp costmap_2d dynamic_reconfigure
+  CATKIN_DEPENDS
+  roscpp
+  costmap_2d
+  dynamic_reconfigure
+  std_msgs
 )
 
 include_directories(
@@ -25,9 +30,9 @@ include_directories(
 add_library(simple_layer
   src/simple_layer.cpp
   src/grid_layer.cpp
+  src/outer_layer.cpp
 )
 
 target_link_libraries(simple_layer
   ${catkin_LIBRARIES}
 )
-
