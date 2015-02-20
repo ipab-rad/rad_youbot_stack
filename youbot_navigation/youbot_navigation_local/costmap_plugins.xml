@@ -9,7 +9,7 @@
       <description>Demo Layer that marks all points that were ever one meter in front of the robot</description>
     </class>
   </library>
-  <library path="lib/libgrid_layer">
+  <library path="lib/libouter_layer">
     <class type="outer_layer::OuterLayer" base_class_type="costmap_2d::Layer">
       <description>IRL map</description>
     </class>
