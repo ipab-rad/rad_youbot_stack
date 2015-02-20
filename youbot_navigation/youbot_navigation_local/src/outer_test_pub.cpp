@@ -4,7 +4,7 @@
 #include "ros/ros.h"
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
-#include "std_msgs/Int32MultiArray.h"
+#include "std_msgs/Int8MultiArray.h"
 
 
 int main(int argc, char **argv) {
@@ -13,34 +13,25 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle n;
 
-  ros::Publisher pub = n.advertise<std_msgs::Int32MultiArray>("/some_publisher", 100);
+  ros::Publisher pub = n.advertise<std_msgs::Int8MultiArray>("/some_publisher", 100);
 
   while (ros::ok())
   {
-    vector < vector <Int> > V (
-        std_msgs::Int8MultiArray matrix_ma;
-        matrix.data.clear();
-        matrix.data.push_back();
+    // some vectors of vectors here
+    std::vector < std::vector<int> > matrix;
 
-        for (int i = 0; i < w*h; i++) {
-          oneDReversed[i] = twoD[(i / w)][(i%w)];
-        }
-        //for loop, pushing data in the size of the array
-        for (int i = 0; i < 200; i++)
-        {
-          for (int j = 0; j < 200; j++) {
-            //assign array a random number between 0 and 255.
-            array.data.push_back(rand() % 255);
-          }
-        }
-        //Publish array
-        pub.publish(array);
-        //Let the world know
-        ROS_INFO("TEST: Outer layer has been published");
-        //Do this.
-        ros::spinOnce();
-        //Added a delay so not to spam
-        sleep(2);
-        }
+    std_msgs::Int8MultiArray matrix_ma;
+    matrix_ma.data.clear();
+    int WIDTH_MATRIX = 200;
+    int HEIGHT_MATRIX = 200;
+    // linearise matrix
+    for (int i = 0; i < WIDTH_MATRIX*HEIGHT_MATRIX; i++) {
+      matrix_ma.data.push_back(matrix[i / WIDTH_MATRIX][i % WIDTH_MATRIX]);
+    }
 
+    pub.publish(matrix_ma);
+    ROS_INFO("TEST: Outer layer has been published");
+    ros::spinOnce();
+    sleep(1);
   }
+}
