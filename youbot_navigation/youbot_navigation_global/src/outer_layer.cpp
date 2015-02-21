@@ -97,13 +97,13 @@ void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int 
         continue;
       }
       if(master_grid.worldToMap(-c, -r, mx, my)){
-	std::cout << "Update: " 
+	/* std::cout << "Update: " 
 		  << mx << ", "
 		  << my << "; " << std::endl
 		  << -c << ", "
 		  << -r << " = "
 		  << (int) value << std::endl;
-
+*/
 	master_grid.setCost(mx, my, value);
 
       }
