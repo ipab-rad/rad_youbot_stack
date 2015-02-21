@@ -13,7 +13,6 @@ OuterLayer::OuterLayer() {}
 
 void OuterLayer::onInitialize()
 {
-  enabled_ = false;
   MATRIX_WIDTH = 200;
   MATRIX_HEIGHT = 200;
   is_matrix_initialised = false;
@@ -114,7 +113,9 @@ void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int 
         // std::cout << "NO INFORMATION!" << std::endl;
         continue;
       }
-      std::cout << "YES INFORMATION!" << std::endl;
+      if (value != 0) {
+      std::cout << "YES INFORMATION! " << static_cast<unsigned>(value) << "WHAT UP!" << std::endl;
+      }
       master_grid.setCost(r, c, value);
     }
   }
