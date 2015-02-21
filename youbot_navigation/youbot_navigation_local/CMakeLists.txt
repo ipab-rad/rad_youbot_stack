@@ -29,8 +29,13 @@ include_directories(
 
 add_library(simple_layer
   src/simple_layer.cpp
+)
+
+
+add_library(grid_layer
   src/grid_layer.cpp
 )
+
 add_library(outer_layer
   src/outer_layer.cpp
 )

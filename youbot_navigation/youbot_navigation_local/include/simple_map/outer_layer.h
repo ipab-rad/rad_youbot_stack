@@ -15,7 +15,7 @@
 
 namespace outer_layer
 {
-class OuterLayer : public costmap_2d::Layer, public costmap_2d::Costmap2D
+class OuterLayer : public costmap_2d::Layer
 {
  public:
   OuterLayer();
@@ -33,16 +33,11 @@ class OuterLayer : public costmap_2d::Layer, public costmap_2d::Costmap2D
                            int min_j,
                            int max_i,
                            int max_j);
-  bool isDiscretized()
-  {
-    return true;
-  }
-  virtual void matchSize();
 
  private:
   int MATRIX_WIDTH;
   int MATRIX_HEIGHT;
-  bool is_matrix_initialised;
+  bool is_matrix_initialised_;
   void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
   // unsigned char default_value_;

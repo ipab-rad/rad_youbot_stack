@@ -1,11 +1,11 @@
 #include <simple_map/simple_layer.h>
 #include <pluginlib/class_list_macros.h>
 
-PLUGINLIB_EXPORT_CLASS(simple_layer_namespace::SimpleLayer, costmap_2d::Layer)
+PLUGINLIB_EXPORT_CLASS(simple_layer::SimpleLayer, costmap_2d::Layer)
 
 using costmap_2d::LETHAL_OBSTACLE;
 
-namespace simple_layer_namespace
+namespace simple_layer
 {
 
 SimpleLayer::SimpleLayer() {}
@@ -40,7 +40,13 @@ void SimpleLayer::updateBounds(double origin_x, double origin_y, double origin_y
   *min_y = std::min(*min_y, mark_y_);
   *max_x = std::max(*max_x, mark_x_);
   *max_y = std::max(*max_y, mark_y_);
-  std::cout << "SIMPLE: BOUNDS: " << *max_x << *max_y << *min_x << *min_y << std::endl;
+    std::cout << "SIMPLE - BOUNDS  -> max:"
+	      << *max_x << ", "
+	      << *max_y << "; min: "
+	      << *min_x << ", "
+	      << *min_y << ". "
+	      << mark_x_ << " " << mark_y_ << std::endl;
+
 }
 
 void SimpleLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int min_j, int max_i,
@@ -53,6 +59,7 @@ void SimpleLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int
   unsigned int my;
   if(master_grid.worldToMap(mark_x_, mark_y_, mx, my)){
     master_grid.setCost(mx, my, LETHAL_OBSTACLE);
+    std::cout << "GRID - COSTS: " << mx << ", " << my << std::endl; 
   }
 }
 
