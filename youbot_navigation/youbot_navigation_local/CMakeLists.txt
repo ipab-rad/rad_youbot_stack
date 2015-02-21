@@ -36,22 +36,6 @@ add_library(grid_layer
   src/grid_layer.cpp
 )
 
-add_library(outer_layer
-  src/outer_layer.cpp
-)
-
-add_executable(outer_test_pub
-  src/outer_test_pub.cpp
-)
-
 target_link_libraries(simple_layer
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(outer_layer
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(outer_test_pub
   ${catkin_LIBRARIES}
 )

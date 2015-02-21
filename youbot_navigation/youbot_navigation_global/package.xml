@@ -1,14 +1,30 @@
 <package>
   <name>youbot_navigation_global</name>
-  <description>Helper files for navigation of the KUKA youBot</description>
-  <author>Walter Nowak</author>
-  <maintainer email="x@x.de">x</maintainer>
-  <license>BSD</license>
-  <version>0.1.0</version>
-  <url>http://www.locomotec.com</url>
+  <version>0.0.0</version>
+  <maintainer email="n.nardelli@sms.ed.ac.uk">Nantas Nardelli</maintainer>
+
+  <license>MIT</license>
+
+  <description>Local navigation for the KUKA youBot</description>
 
   <buildtool_depend>catkin</buildtool_depend>
- 
+  <build_depend>roscpp</build_depend>
+  <build_depend>move_base</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>costmap_2d</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>costmap_2d</run_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
+
+  <export>
+    <costmap_2d plugin="${prefix}/costmap_plugins.xml" />
+  </export>
 </package>
-
-
