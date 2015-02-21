@@ -15,9 +15,7 @@ void OuterLayer::onInitialize()
 {
   MATRIX_WIDTH = 200;
   MATRIX_HEIGHT = 200;
-  is_matrix_initialised = false;
-  // initialising the vector
-  // std::vector< std::vector<int> > data_matrix(MATRIX_HEIGHT, std::vector<int>(MATRIX_WIDTH));
+  is_matrix_initialised_ = false;
   data_matrix.resize(MATRIX_HEIGHT, std::vector<int>(MATRIX_WIDTH, 0));
   ros::NodeHandle node;
   sub_ = node.subscribe("/outer_layer",
@@ -28,9 +26,6 @@ void OuterLayer::onInitialize()
 
   ros::NodeHandle nh("~/" + name_);
   current_ = true;
-  default_value_ = NO_INFORMATION;
-  matchSize();
-
   dsrv_ = new dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig>(nh);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig>::CallbackType cb = boost::bind(
       &OuterLayer::reconfigureCB, this, _1, _2);
@@ -39,6 +34,7 @@ void OuterLayer::onInitialize()
 
 void OuterLayer::receive_layer(const std_msgs::Int32MultiArray::ConstPtr& msg)
 {
+  is_matrix_initialised_ = true;
   int count = 0;
   int r;
   int c;
@@ -47,17 +43,16 @@ void OuterLayer::receive_layer(const std_msgs::Int32MultiArray::ConstPtr& msg)
     r = (count / MATRIX_WIDTH);
     c = (count % MATRIX_WIDTH);
     data_matrix[r][c] = *m_it; // stil an int
+    count++;
   }
-  std::cout << "RANDOM POINT: "
-            << data_matrix[rand() % 254][rand() % 254]
-            << std::endl;
-}
-
-void OuterLayer::matchSize()
-{
-  Costmap2D* master = layered_costmap_->getCostmap();
-  resizeMap(master->getSizeInCellsX(), master->getSizeInCellsY(), master->getResolution(),
-            master->getOriginX(), master->getOriginY());
+  std::cout << "MSG RECEIVED - Is it 63? ";
+  if (data_matrix[18][18] == 63)
+    {
+      std::cout << "Yes! All good." << std::endl;
+    }
+  else {
+    std::cout << "Nope!!! n = " << data_matrix[18][18] << std::endl;
+  }
 }
 
 void OuterLayer::reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level)
@@ -70,53 +65,48 @@ void OuterLayer::updateBounds(double origin_x, double origin_y, double origin_ya
 {
   if (!enabled_)
     return;
-  /* double mark_x = origin_x + cos(origin_yaw), mark_y = origin_y + sin(origin_yaw); */
-  /* unsigned int mx; */
-  /* unsigned int my; */
-  /* if(worldToMap(mark_x, mark_y, mx, my)){ */
-  /*   setCost(mx, my, LETHAL_OBSTACLE); */
-  /* } */
-  /* *min_x = std::min(*min_x, mark_x); */
-  /* *min_y = std::min(*min_y, mark_y); */
-  /* *max_x = std::max(*max_x, mark_x); */
-  /* *max_y = std::max(*max_y, mark_y); */
-  std::cout << "OUTER: UPDATE  -> max:"
-            << *max_x << ", "
-            << *max_y << "; min: "
-            << *min_x << ", "
-            << *min_y << std::endl;
+  double MW = 1000.0;
+  double MH = 1000.0;
+  *min_x = std::min(*min_x, (double) -MW);
+  *min_y = std::min(*min_y, (double) -MH);
+  *max_x = std::max(*max_x, (double) MW);
+  *max_y = std::max(*max_y, (double) MH);
+  
+  // std::cout << "OUTER: UPDATE  -> max:"
+  //           << *max_x << ", "
+  //           << *max_y << "; min: "
+  //           << *min_x << ", "
+  //           << *min_y << std::endl;
 }
 
 void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int min_j, int max_i,
                             int max_j)
 {
-
-  /*
-    if (!enabled_)
-     return;
-  */
-
-  std::cout << "OUTER: COSTS -> max:"
-            << max_i << ", "
-            << max_j << "; min: "
-            << min_i << ", "
-            << min_j << std::endl;
+  if (!is_matrix_initialised_) { return; }
+  if (!enabled_)
+    return;
+  unsigned int mx;
+  unsigned int my;
 
   for (int r = 0; r < MATRIX_HEIGHT; r++)
   {
     for (int c = 0; c < MATRIX_WIDTH; c++)
     {
-      // TODO: using WORLDTOMAP?
-      // int index = getIndex(i, j);
       unsigned char value = data_matrix[r][c];
-      if (value == NO_INFORMATION){
-        // std::cout << "NO INFORMATION!" << std::endl;
+      if (value == 0){
         continue;
       }
-      if (value != 0) {
-      std::cout << "YES INFORMATION! " << static_cast<unsigned>(value) << "WHAT UP!" << std::endl;
+      if(master_grid.worldToMap(-c, -r, mx, my)){
+	std::cout << "Update: " 
+		  << mx << ", "
+		  << my << "; " << std::endl
+		  << -c << ", "
+		  << -r << " = "
+		  << (int) value << std::endl;
+
+	master_grid.setCost(mx, my, value);
+
       }
-      master_grid.setCost(r, c, value);
     }
   }
 }
