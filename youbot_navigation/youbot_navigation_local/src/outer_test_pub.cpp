@@ -5,7 +5,7 @@
 #include "ros/ros.h"
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
-#include "std_msgs/Int8MultiArray.h"
+#include "std_msgs/Int32MultiArray.h"
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle n;
 
-  ros::Publisher pub = n.advertise<std_msgs::Int8MultiArray>("/outer_layer", 400);
+  ros::Publisher pub = n.advertise<std_msgs::Int32MultiArray>("/outer_layer", 400);
 
   char cwd[1024];
   getcwd(cwd, sizeof(cwd));
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
     // TODO: ALEX PUT YOUR VECTOR HERE!
     Matrix matrix = createVector(path + "/share/Model-A.txt");
 
-    std_msgs::Int8MultiArray matrix_ma;
+    std_msgs::Int32MultiArray matrix_ma;
     matrix_ma.data.clear();
     // linearise matrix
     std::vector< std::vector<int> >::iterator r;
@@ -80,6 +80,6 @@ int main(int argc, char **argv) {
     pub.publish(matrix_ma);
     ROS_INFO("TEST: Outer layer has been published");
     ros::spinOnce();
-    sleep(1);
+    sleep(5);
   }
 }
