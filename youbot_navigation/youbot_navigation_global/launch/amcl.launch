@@ -7,6 +7,7 @@
 
 <!--
     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+	<remap from="scan" to="base_scan" />
       <param name="map_update_interval" value="5.0"/>
       <param name="maxUrange" value="3.0"/>
       <param name="maxRange" value="5.0"/>
@@ -53,8 +54,8 @@
 
   <param name="save_pose_rate" value="0.5" />
   <param name="use_map_topic" value="true" />
-  <param name="initial_pose_x" value="-7.4" />
-  <param name="initial_pose_y" value="1.6" />
+  <param name="initial_pose_x" value="-8.4" />
+  <param name="initial_pose_y" value="1.0" />
   <param name="initial_pose_a" value="-0.05" />  
 
   <param name="odom_model_type" value="omni"/>
