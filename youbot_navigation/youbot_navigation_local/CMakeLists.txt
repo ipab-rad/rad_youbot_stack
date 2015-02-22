@@ -35,10 +35,18 @@ add_library(AgentsLayer
   src/AgentsLayer.cpp
 )
 
+add_executable(AgentsPub
+  src/AgentsPub.cpp
+)
+
 target_link_libraries(HindsightLayer
   ${catkin_LIBRARIES}
 )
 
 target_link_libraries(AgentsLayer
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(AgentsPub
   ${catkin_LIBRARIES}
 )
