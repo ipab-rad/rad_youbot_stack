@@ -27,15 +27,18 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(simple_layer
-  src/simple_layer.cpp
+add_library(HindsightLayer
+  src/HindsightLayer.cpp
 )
 
-
-add_library(grid_layer
-  src/grid_layer.cpp
+add_library(AgentsLayer
+  src/AgentsLayer.cpp
 )
 
-target_link_libraries(simple_layer
+target_link_libraries(HindsightLayer
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(AgentsLayer
   ${catkin_LIBRARIES}
 )

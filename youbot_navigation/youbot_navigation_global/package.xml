@@ -5,7 +5,9 @@
 
   <license>MIT</license>
 
-  <description>Local navigation for the KUKA youBot</description>
+  <description>
+    Navigation for the KUKA youBot, including custom costmap_2d layers
+  </description>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
@@ -27,4 +29,5 @@
   <export>
     <costmap_2d plugin="${prefix}/costmap_plugins.xml" />
   </export>
+
 </package>

@@ -1,0 +1,17 @@
+<class_libraries>
+  <library path="lib/libagents_layer">
+    <class type="agents_layer::AgentsLayer" base_class_type="costmap_2d::Layer">
+      <description>
+        Layer that contains positions of all the agents relative to
+        the robot
+      </description>
+    </class>
+  </library>
+  <library path="lib/libhindsight_layer">
+    <class type="hindsight_layer::HindsightLayer" base_class_type="costmap_2d::Layer">
+      <description>
+        Layer containing interactive motion predictions
+      </description>
+    </class>
+  </library>
+</class_libraries>
