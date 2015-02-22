@@ -2,9 +2,10 @@
 	<!-- Run map server -->
 
    <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFullClean.yaml" ns="$(env ROBOT_NAME)" /> -->
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFullClean.yaml" /> 
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" /> 
 
 
+<!--  Enable to perform SLAM in order to generate a new map  -->
 <!--
     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
 	<remap from="scan" to="base_scan" />
@@ -53,10 +54,10 @@
   -->
 
   <param name="save_pose_rate" value="0.5" />
-  <param name="use_map_topic" value="true" />
-  <param name="initial_pose_x" value="-8.4" />
-  <param name="initial_pose_y" value="1.0" />
-  <param name="initial_pose_a" value="-0.05" />  
+<!--  <param name="use_map_topic" value="true" /> -->
+  <param name="initial_pose_x" value="-8.0" />
+  <param name="initial_pose_y" value="1.5" />
+  <param name="initial_pose_a" value="0.00" />  
 
   <param name="odom_model_type" value="omni"/>
   <param name="odom_alpha5" value="0.1"/>
