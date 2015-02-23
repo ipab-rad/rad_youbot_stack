@@ -3,7 +3,9 @@ Configuration stack for YouBots run in the RAD lab
 
 # Requirements
 
-* serial (apt-get install ros-<dist>-serial)
+* `pyserial`
+* `costmap_2d`
+* `youbot_driver`
 
 # Cloning the repository
 
