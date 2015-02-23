@@ -11,10 +11,10 @@ class Bumper(object):
         try:
             self.ser = serial.Serial(
                 port="/dev/ttyS0",
-                baudrate=9600,
+                baudrate=38400,
                 parity=serial.PARITY_ODD,
-                stopbits=serial.STOPBITS_TWO,
-                bytesize=serial.SEVENBITS
+                stopbits=serial.STOPBITS_ONE,
+                bytesize=serial.EIGHTBITS
             )
         except Exception:
             print("Bad initialisation! Check the configuration of "
