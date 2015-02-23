@@ -1,6 +1,10 @@
 # RAD Youbot stack
 Configuration stack for YouBots run in the RAD lab
 
+# Requirements
+
+* serial (apt-get install ros-<dist>-serial)
+
 # Cloning the repository
 
 ```
