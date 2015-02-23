@@ -41,12 +41,12 @@
 -->
 
  <node pkg="amcl" type="amcl" name="amcl" ns="$(env ROBOT_NAME)"> 
-  <!--
+  
   <remap from="scan" to="$(env ROBOT_NAME)/scan"/>
   <remap from="initialpose" to="$(env ROBOT_NAME)/initialpose"/>
   <remap from="particlecloud" to="$(env ROBOT_NAME)/particlecloud"/>
   <remap from="amcl_pose" to="$(env ROBOT_NAME)/amcl_pose"/>
- -->
+ 
 
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->

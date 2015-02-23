@@ -1,8 +1,8 @@
 <launch>
-	<!-- Run map server -->
 
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" ns="$(env ROBOT_NAME)" />
-   
+   <!-- Run map server -->
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" /> 
+
 
 <!--  Enable to perform SLAM in order to generate a new map  -->
 <!--
@@ -40,14 +40,11 @@
     </node>
 -->
 
- <node pkg="amcl" type="amcl" name="amcl" ns="$(env ROBOT_NAME)"> 
-  <!--
-  <remap from="scan" to="$(env ROBOT_NAME)/scan"/>
-  <remap from="initialpose" to="$(env ROBOT_NAME)/initialpose"/>
-  <remap from="particlecloud" to="$(env ROBOT_NAME)/particlecloud"/>
-  <remap from="amcl_pose" to="$(env ROBOT_NAME)/amcl_pose"/>
- -->
 
+ <node pkg="amcl" type="amcl" name="amcl">
+ 
+  <remap from="scan" to="base_scan"/>
+ 
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->
   <param name="initial_pose_x" value="-8.0" />
