@@ -1,7 +1,9 @@
 <launch>
 	<!-- Run map server -->
 
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" ns="$(env ROBOT_NAME)" />
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" ns="$(env ROBOT_NAME)">
+      <param name="frame_id" value="$(env ROBOT_NAME)/map" />
+   </node>
    
 
 <!--  Enable to perform SLAM in order to generate a new map  -->
