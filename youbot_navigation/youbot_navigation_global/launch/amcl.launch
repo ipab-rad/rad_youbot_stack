@@ -41,13 +41,8 @@
 -->
 
  <node pkg="amcl" type="amcl" name="amcl" ns="$(env ROBOT_NAME)"> 
-  <!--
-  <remap from="scan" to="$(env ROBOT_NAME)/scan"/>
-  <remap from="initialpose" to="$(env ROBOT_NAME)/initialpose"/>
-  <remap from="particlecloud" to="$(env ROBOT_NAME)/particlecloud"/>
-  <remap from="amcl_pose" to="$(env ROBOT_NAME)/amcl_pose"/>
- -->
-
+  <remap from="scan" to="base_scan" />
+  
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->
   <param name="initial_pose_x" value="-8.0" />
@@ -77,9 +72,9 @@
   <param name="laser_likelihood_max_dist" value="2.0"/>
   <param name="update_min_d" value="0.1"/> <!-- def. 0.2 -->
   <param name="update_min_a" value="0.1"/> <!-- def. 0.5 -->
-  <param name="global_frame_id" value="map"/>
-  <param name="base_frame_id" value="base_link"/>
-  <param name="odom_frame_id" value="odom"/>
+  <param name="global_frame_id" value="$(env ROBOT_NAME)/map"/>
+  <param name="base_frame_id" value="$(env ROBOT_NAME)/base_link"/>
+  <param name="odom_frame_id" value="$(env ROBOT_NAME)/odom"/>
   <param name="resample_interval" value="1"/>
   <param name="transform_tolerance" value="0.1"/>
   <param name="recovery_alpha_slow" value="0.001"/> <!-- def. 0.0 -->

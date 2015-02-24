@@ -3,10 +3,8 @@ This scrip provides sensor and joint feedback while performing local costmap nav
 -->
 
 <launch>
-
-        <include file="$(find youbot_navigation_common)/launch/bringup_navigation.launch" />
-        <include file="$(find youbot_navigation_global)/launch/amcl.launch" />
-        
+	<param name="$(env ROBOT_NAME)/tf_prefix" value="$(env ROBOT_NAME)" />
+	<include file="$(find youbot_navigation_common)/launch/bringup_navigation.launch"/>
+        <include file="$(find youbot_navigation_global)/launch/amcl.launch"/>
 </launch>
-
 
