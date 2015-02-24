@@ -1,0 +1,10 @@
+<!-- Launch file for remote controlling the Youbot using keyboard (Requires open console)-->
+
+<launch>
+
+        <!-- <include file="$(find youbot_navigation_common)/launch/bringup_navigation.launch" /> -->
+        <!-- <include file="$(find youbot_driver_ros_interface)/launch/youbot_keyboard.launch" /> -->
+	<!-- <node name="keyboard_teleop" pkg="youbot_driver_ros_interface" type="youbot_keyboard_teleop.py" output="screen" /> -->
+	<node name="keyboard_teleop" pkg="youbot_driver_ros_interface" type="youbot_keyboard_teleop.py" output="screen" ns="$(env ROBOT_NAME)" />
+
+</launch>
