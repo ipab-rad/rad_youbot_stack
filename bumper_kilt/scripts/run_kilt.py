@@ -48,18 +48,21 @@ class Bumper(object):
         self.rate = rospy.Rate(10)
 
         self.bits = []
-        self.ser = serial.Serial(
-            port="/dev/ttyS0",
-            baudrate=38400,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
-            bytesize=serial.EIGHTBITS
+        try:
+            self.ser = serial.Serial(
+                port="/dev/ttyS0",
+                baudrate=38400,
+                parity=serial.PARITY_NONE,
+                stopbits=serial.STOPBITS_ONE,
+                bytesize=serial.EIGHTBITS
             )
+        except:
+            raise Exception("Serial port could not be initialised!")
         try:
             print("Opening port...")
             self.ser.open()
         except:
-            print("Port is already open!")
+            print("Port is already open.")
             self.ser.isOpen()
 
     def set_auto(self):
