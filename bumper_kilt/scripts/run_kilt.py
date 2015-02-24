@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+"""
+Interface to listen, analyse and publish the data from the bumper
+kilt of the youbots.
+Data is published in an array of 8 integers, starting from the front
+bumper group and then going clockwise with the rest of the groups.
+"""
 import os
 import time
 import serial
@@ -24,14 +30,21 @@ def dbprint(s, newline=True):
 class Bumper(object):
 
     def __init__(self):
+        """
+        Initialise Bumper class.
+        ROBOT_NAME is used as namespace of the publisher.
+        TODO: node should also be initialised with namespace
+        """
+        # clear screen for lolz
         os.system('cls' if os.name == 'nt' else 'clear')
+
         self.robot = os.environ["ROBOT_NAME"]
         self.nodename = rospy.get_name()
         rospy.loginfo("Starting bumper_kilt node", self.nodename)
         self.pub = rospy.Publisher(self.robot + '/bumper_kilt',
                               Int32MultiArray,
                               queue_size=10)
-        rospy.init_node("bumper_kilt_node")
+        rospy.init_node(self.robot + "_bumper_kilt_node")
         self.rate = rospy.Rate(10)
 
         self.bits = []
@@ -50,6 +63,10 @@ class Bumper(object):
             self.ser.isOpen()
 
     def set_auto(self):
+        """
+        Set serial port mode to Automatic so that we just need to
+        listen to the port.
+        """
         print("Setting mode to auto... "),
         self.ser.write('a')
         out = ""
@@ -65,6 +82,9 @@ class Bumper(object):
             print("DONE")
 
     def get_sensor_data(self, msg):
+        """
+        Assign binary data to `self.bits`.
+        """
         n_bits = 6
         h2b = lambda x: bin(int(x, 16))[2:].zfill(n_bits)
         dbprint(msg)
@@ -108,6 +128,13 @@ class Bumper(object):
         return int(b4[3]) or int(b4[2])
 
     def get_bumps(self):
+        """
+        Create data structure to contain bumps data.
+        `self.bumps[0]` indicates the front group of bumpers and the
+        following groups come clockwise.
+        Value of 1: switch is active (touched);
+        Value of 0: swithc is inactive (untouched).
+        """
         bumps = []
         bits = copy.deepcopy(self.bits)
         if self.bumped_north():
@@ -145,6 +172,10 @@ class Bumper(object):
         self.bumps = bumps
 
     def auto_loop(self):
+        """
+        In auto mode, get data from serial port and publish it to the
+        initialised ROS node.
+        """
         counter = 0
         while True:
             out = ""
