@@ -42,6 +42,7 @@
 
 #include <youbot_trajectory_action_server/joint_trajectory_action.h>
 #include <sstream>
+#include <stdlib.h>
 
 namespace youBot
 {
@@ -107,8 +108,9 @@ void YouBotOODLWrapper::initializeBase(std::string baseName)
     youBotConfiguration.baseConfiguration.switchONMotorsService = node.advertiseService("base/switchOnMotors", &YouBotOODLWrapper::switchOnBaseMotorsCallback, this);
 
     /* setup frame_ids */
-    youBotOdometryFrameID = "youbot_2/odom";
-    youBotOdometryChildFrameID = "youbot_2/base_footprint";
+    char *s = std::getenv("ROBOT_NAME");
+    youBotOdometryFrameID = std::string(s) + "/odom";
+    youBotOdometryChildFrameID = std::string(s) + "/base_footprint";
 
     ROS_INFO("Base is initialized.");
     youBotConfiguration.hasBase = true;
