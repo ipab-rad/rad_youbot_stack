@@ -186,19 +186,20 @@ class Bumper(object):
             while self.ser.inWaiting() > 0:
                 r = self.ser.read(1)
                 out += r
-            if len(out) == 12:
-                dbprint(str([o for o in out]))
-                print(str(counter) + " - New message: " + out[:-2])
-                self.get_sensor_data(out[2:-2])
-                self.get_bumps()
-                counter += 1
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print("CURRENTLY TOUCHING: " + str(self.bumps))
-                msg = Int32MultiArray()
-                for e in self.bumps:
-                    msg.data.append(e)
-                self.pub.publish(msg)
-                self.rate.sleep()
+                if len(out) == 12:
+                    dbprint(str([o for o in out]))
+                    print(str(counter) + " - New message: " + out[:-2])
+                    self.get_sensor_data(out[2:-2])
+                    self.get_bumps()
+                    counter += 1
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print("CURRENTLY TOUCHING: " + str(self.bumps))
+                    msg = Int32MultiArray()
+                    for e in self.bumps:
+                        msg.data.append(e)
+                    self.pub.publish(msg)
+                    self.rate.sleep()
+                    out = ""
 
 def main():
     b = Bumper()
