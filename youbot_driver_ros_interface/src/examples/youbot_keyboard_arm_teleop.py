@@ -14,7 +14,7 @@ Initial configuration is 0 rads at each joint
 To actuate specific joint pass the joint index, for example:
 1
 
-This increases the desired configuration by 0.5 rads for that particular joint
+This increases the desired configuration by 0.1 rads for that particular joint
 
 To switch between increase/decreasing joint angles use:
 d for decreasing
@@ -70,7 +70,7 @@ if __name__=="__main__":
 	rospy.init_node('teleop_arm_keyboard')
 
 	dt=2
-	dtheta = 0.5
+	dtheta = 0.1
 	desired = [0,0,0,0,0]
 	mov_direction = 1
 	
