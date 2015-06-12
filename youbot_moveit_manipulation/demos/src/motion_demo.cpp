@@ -202,18 +202,21 @@ int main(int argc, char **argv)
   // ^^^^^^^^^^^^^^^^^^^^^^^
   // We can plan a motion for this group to a desired pose for the 
   // end-effector.
-  quat = tf::createQuaternionMsgFromRollPitchYaw(-0.0874,0.34516,-0.4479);
-  target_pose.pose.orientation.x = quat.x;
-  target_pose.pose.orientation.y = quat.y;
-  target_pose.pose.orientation.z = quat.z;
-  target_pose.pose.orientation.w = quat.w;
-  ROS_INFO("Quaternion info- x: %f  y: %f  z: %f  w: %f", quat.x, quat.y, quat.z, quat.w);
-  target_pose.pose.position.x = 0.1867;
-  target_pose.pose.position.y = -0.00388;
-  target_pose.pose.position.z = 0.3713;
-  group.setPoseTarget(target_pose, group.getEndEffectorLink());
-  group.setGoalTolerance(0.1);
-  group.setGoalOrientationTolerance(0.01);
+  // quat = tf::createQuaternionMsgFromRollPitchYaw(-0.0874,0.34516,-0.4479);
+  // target_pose.pose.orientation.x = quat.x;
+  // target_pose.pose.orientation.y = quat.y;
+  // target_pose.pose.orientation.z = quat.z;
+  // target_pose.pose.orientation.w = quat.w;
+  // ROS_INFO("Quaternion info- x: %f  y: %f  z: %f  w: %f", quat.x, quat.y, quat.z, quat.w);
+  // target_pose.pose.position.x = 0.1867;
+  // target_pose.pose.position.y = -0.00388;
+  // target_pose.pose.position.z = 0.3713;
+  // group.setPoseTarget(target_pose, group.getEndEffectorLink());
+  // group.setGoalTolerance(0.1);
+  // group.setGoalOrientationTolerance(0.01);
+
+
+  group.setNamedTarget("folded");
 
   // Moving to pose goal
   // ^^^^^^^^^^^^^^^^^^^^^
