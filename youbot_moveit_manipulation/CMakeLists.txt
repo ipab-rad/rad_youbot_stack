@@ -30,3 +30,4 @@ link_directories(${catkin_LIBRARY_DIRS})
 
 add_subdirectory(planning)
 add_subdirectory(kinematics)
+add_subdirectory(demos)
