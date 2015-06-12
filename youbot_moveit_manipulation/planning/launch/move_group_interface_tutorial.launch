@@ -1,0 +1,8 @@
+<launch>
+
+  <include file="$(find youbot_moveit_config)/launch/moveit_planning_execution.launch"/>
+
+  <node name="move_group_interface_tutorial" pkg="youbot_moveit_manipulation" type="move_group_interface_tutorial" respawn="false" output="screen">
+  </node>
+
+</launch>

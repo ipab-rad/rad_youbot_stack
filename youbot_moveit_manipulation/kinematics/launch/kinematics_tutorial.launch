@@ -1,0 +1,14 @@
+<launch>
+
+  <include file="$(find youbot_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="kinematics_tutorial"
+        pkg="youbot_moveit_manipulation"
+        type="kinematics_tutorial"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find youbot_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>
