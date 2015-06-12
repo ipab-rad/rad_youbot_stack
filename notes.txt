@@ -1,0 +1,25 @@
+Author: Alexandre Silva
+
+===================================================================
+
+To launch Gazebo and MoveIt! motion execution python script:
+
+roslaunch youbot_gazebo_robot youbot.launch
+roslaunch youbot_moveit_config move_group.launch
+rosrun moveit_commander moveit_commander_cmdline.py
+
+
+===================================================================
+
+To launch Gazebo and RViz with motion planning plugin: 
+
+roslaunch youbot_gazebo_robot youbot.launch
+roslaunch youbot_moveit_config moveit_planning_execution.launch
+
+
+===================================================================
+
+To launch Gazebo and custom-made joint actuator python script (no moveit lib):
+
+roslaunch youbot_gazebo_robot youbot.launch
+rosrun youbot_driver_ros_interface youbot_keyboard_arm_teleop.py
