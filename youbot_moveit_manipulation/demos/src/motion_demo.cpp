@@ -79,7 +79,6 @@ int main(int argc, char **argv)
 
   // Getting Basic Information
   // ^^^^^^^^^^^^^^^^^^^^^^^^^
-  //
   // We can print the name of the reference frame for this robot.
   ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
   
@@ -87,26 +86,9 @@ int main(int argc, char **argv)
   ROS_INFO("Reference frame: %s", group.getEndEffectorLink().c_str());
 
   // GO CANDLE
-
   // Setting Pose goal
-  // ^^^^^^^^^^^^^^^^^^^^^^^
-  // We can plan a motion for this group to a desired pose for the 
-  // end-effector.
-  geometry_msgs::PoseStamped target_pose;
-  target_pose.header.frame_id = "base_footprint";
-  geometry_msgs::Quaternion quat ;
-  quat = tf::createQuaternionMsgFromRollPitchYaw(0.00,0.00,0.017);
-  target_pose.pose.orientation.x = quat.x;
-  target_pose.pose.orientation.y = quat.y;
-  target_pose.pose.orientation.z = quat.z;
-  target_pose.pose.orientation.w = quat.w;
-  ROS_INFO("Quaternion info- x: %f  y: %f  z: %f  w: %f", quat.x, quat.y, quat.z, quat.w);
-  target_pose.pose.position.x = 0.190;
-  target_pose.pose.position.y = 0.000;
-  target_pose.pose.position.z = 0.580;
-  group.setPoseTarget(target_pose, group.getEndEffectorLink());
-  group.setGoalTolerance(0.1);
-  group.setGoalOrientationTolerance(0.01);
+  // from srdf file 
+  group.setNamedTarget("candle");
 
   // Moving to pose goal
   // ^^^^^^^^^^^^^^^^^^^^^
@@ -117,12 +99,13 @@ int main(int argc, char **argv)
 
 
   // GO FRONT GRASP
-
-
   // Setting Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
   // We can plan a motion for this group to a desired pose for the 
   // end-effector.
+  geometry_msgs::PoseStamped target_pose;
+  target_pose.header.frame_id = "base_footprint";
+  geometry_msgs::Quaternion quat ;
   quat = tf::createQuaternionMsgFromRollPitchYaw(-3.1329,-0.0390,0.1853);
   target_pose.pose.orientation.x = quat.x;
   target_pose.pose.orientation.y = quat.y;
@@ -145,7 +128,6 @@ int main(int argc, char **argv)
 
 
   // GO RIGHT SIDE GRASP
-
   // Setting Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
   // We can plan a motion for this group to a desired pose for the 
@@ -170,8 +152,8 @@ int main(int argc, char **argv)
   /* Sleep to give time to execute movement. */
   sleep(30.0);
 
-  // GO BACK DROP
 
+  // GO BACK DROP
   // Setting Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
   // We can plan a motion for this group to a desired pose for the 
@@ -196,26 +178,10 @@ int main(int argc, char **argv)
   /* Sleep to give time to execute movement. */
   sleep(30.0);
 
+  
   // GO FOLDED
-
   // Setting Pose goal
-  // ^^^^^^^^^^^^^^^^^^^^^^^
-  // We can plan a motion for this group to a desired pose for the 
-  // end-effector.
-  // quat = tf::createQuaternionMsgFromRollPitchYaw(-0.0874,0.34516,-0.4479);
-  // target_pose.pose.orientation.x = quat.x;
-  // target_pose.pose.orientation.y = quat.y;
-  // target_pose.pose.orientation.z = quat.z;
-  // target_pose.pose.orientation.w = quat.w;
-  // ROS_INFO("Quaternion info- x: %f  y: %f  z: %f  w: %f", quat.x, quat.y, quat.z, quat.w);
-  // target_pose.pose.position.x = 0.1867;
-  // target_pose.pose.position.y = -0.00388;
-  // target_pose.pose.position.z = 0.3713;
-  // group.setPoseTarget(target_pose, group.getEndEffectorLink());
-  // group.setGoalTolerance(0.1);
-  // group.setGoalOrientationTolerance(0.01);
-
-
+  // from srdf file
   group.setNamedTarget("folded");
 
   // Moving to pose goal
