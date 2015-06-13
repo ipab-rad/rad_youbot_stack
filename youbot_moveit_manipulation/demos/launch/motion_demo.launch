@@ -1,0 +1,8 @@
+<launch>
+
+  <include file="$(find youbot_moveit_config)/launch/moveit_planning_execution.launch"/>
+
+  <node name="motion_demo" pkg="youbot_moveit_manipulation" type="motion_demo" respawn="false" output="screen">
+  </node>
+
+</launch>

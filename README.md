@@ -6,6 +6,7 @@ Configuration stack for YouBots run in the RAD lab
 * `pyserial`
 * `costmap_2d`
 * `youbot_driver`
+* `svenschneider/youbot-manipulation`
 
 # Cloning the repository
 

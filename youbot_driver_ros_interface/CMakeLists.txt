@@ -71,6 +71,6 @@ install(TARGETS youbot_driver_ros_interface youbot_arm_test
 # enable python teleop script
 catkin_python_setup()
 
-install(PROGRAMS src/examples/youbot_keyboard_teleop.py
+install(PROGRAMS src/examples/youbot_keyboard_teleop.py src/examples/youbot_keyboard_arm_teleop.py
          DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
