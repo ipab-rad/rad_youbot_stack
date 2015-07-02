@@ -35,13 +35,6 @@
         <joint name="arm_joint_4" value="0.02" />
         <joint name="arm_joint_5" value="0.02" />
     </group_state>
-    <group_state name="front_grasp" group="arm_1">
-        <joint name="arm_joint_1" value="3.0" />
-        <joint name="arm_joint_2" value="2.15" />
-        <joint name="arm_joint_3" value="-1.0" />
-        <joint name="arm_joint_4" value="2.4" />
-        <joint name="arm_joint_5" value="0.0" />
-    </group_state>
     <group_state name="r_side_grasp" group="arm_1">
         <joint name="arm_joint_1" value="4.8" />
         <joint name="arm_joint_2" value="2.0" />
@@ -49,12 +42,26 @@
         <joint name="arm_joint_4" value="2.4" />
         <joint name="arm_joint_5" value="0.0" />
     </group_state>
+    <group_state name="r_pre_grasp" group="arm_1">
+        <joint name="arm_joint_1" value="4.75" />
+        <joint name="arm_joint_2" value="1.25" />
+        <joint name="arm_joint_3" value="-1.06" />
+        <joint name="arm_joint_4" value="3.31" />
+        <joint name="arm_joint_5" value="3.27" />
+    </group_state>
     <group_state name="l_side_grasp" group="arm_1">
-        <joint name="arm_joint_1" value="1.5" />
+        <joint name="arm_joint_1" value="1.64" />
         <joint name="arm_joint_2" value="2.0" />
         <joint name="arm_joint_3" value="-1.0" />
         <joint name="arm_joint_4" value="2.4" />
         <joint name="arm_joint_5" value="0.0" />
+    </group_state>
+    <group_state name="l_pre_grasp" group="arm_1">
+        <joint name="arm_joint_1" value="1.64" />
+        <joint name="arm_joint_2" value="1.25" />
+        <joint name="arm_joint_3" value="-1.06" />
+        <joint name="arm_joint_4" value="3.31" />
+        <joint name="arm_joint_5" value="3.27" />
     </group_state>
     <group_state name="back_drop" group="arm_1">
         <joint name="arm_joint_1" value="0.0" />
