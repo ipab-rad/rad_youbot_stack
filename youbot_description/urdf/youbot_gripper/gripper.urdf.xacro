@@ -23,7 +23,7 @@
 				<mass value="0.1"/>
 				<inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
 			</inertial>
-			
+
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
@@ -31,7 +31,7 @@
 				</geometry>
 				<material name="Black" />
 			</visual>
-			
+
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
@@ -41,16 +41,16 @@
 			</collision>
 		</link>
 
-		
-		
+
+
 		<joint name="${name}_finger_joint_l" type="prismatic">
-			<origin xyz="0.004 0.008 0.046" rpy="0 0 ${M_PI}" />
+			<origin xyz="0.004 0.02 0.046" rpy="0 0 ${M_PI}" />
 			<parent link="${name}_palm_link"/>
 			<child link="${name}_finger_link_l"/>
 			<axis xyz="0 -1 0" />
-			
+
 			<dynamics damping="1.0" friction="1.0" />
-			<limit effort="1" velocity="0.1" lower="0" upper="${finger_joint}"/> 
+			<limit effort="1" velocity="0.1" lower="0" upper="${finger_joint}"/>
                         <safety_controller k_position="20" k_velocity="25" soft_lower_limit="${threshold}" soft_upper_limit="${finger_joint_soft}" />
 		</joint>
 
@@ -60,7 +60,7 @@
 				<mass value="0.01"/>
 				<inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
 			</inertial>
-			
+
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
@@ -68,7 +68,7 @@
 				</geometry>
 				<material name="Black" />
 			</visual>
-			
+
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
@@ -79,12 +79,12 @@
 		</link>
 
                <joint name="${name}_finger_joint_r" type="prismatic">
-			<origin xyz="0.004 -0.008 0.046" rpy="0 0 0" />
+			<origin xyz="0.004 -0.02 0.046" rpy="0 0 0" />
 			<parent link="${name}_palm_link"/>
 			<child link="${name}_finger_link_r"/>
 			<axis xyz="0 -1 0" />
 			<dynamics damping="1.0" friction="1.0" />
-			<limit effort="1" velocity="0.1" lower="0" upper="${finger_joint}"/> 
+			<limit effort="1" velocity="0.1" lower="0" upper="${finger_joint}"/>
                         <safety_controller k_position="20" k_velocity="25" soft_lower_limit="${threshold}" soft_upper_limit="${finger_joint_soft}" />
 		</joint>
 
@@ -94,7 +94,7 @@
 				<mass value="0.01"/>
 				<inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
 			</inertial>
-			
+
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
@@ -102,7 +102,7 @@
 				</geometry>
 				<material name="Black" />
 			</visual>
-			
+
 			<collision>
 				<origin xyz="0.000 0 0" rpy="0 0 0" />
 				<geometry>
@@ -112,7 +112,7 @@
 			</collision>
 		</link>
 
-		
+
 		<!-- extensions -->
 		<xacro:youbot_gripper_gazebo name="${name}" />
 		<xacro:youbot_gripper_transmission name="${name}" />
