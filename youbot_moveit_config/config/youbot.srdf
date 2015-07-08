@@ -165,4 +165,10 @@
     <disable_collisions link1="wheel_link_br" link2="wheel_link_fl" reason="Never" />
     <disable_collisions link1="wheel_link_br" link2="wheel_link_fr" reason="Never" />
     <disable_collisions link1="wheel_link_fl" link2="wheel_link_fr" reason="Never" />
+    <disable_collisions link1="arm_cam3d_tilt_link" link2="arm_cam3d_foot_link" reason="Never" />
+    <disable_collisions link1="arm_cam3d_tilt_link" link2="arm_cam3d_camera" reason="Never" />
+    <disable_collisions link1="arm_cam3d_foot_link" link2="arm_cam3d_camera" reason="Never" />
+    <disable_collisions link1="arm_cam3d_tilt_link" link2="arm_link_4" reason="Adjacent" />
+    <disable_collisions link1="arm_cam3d_foot_link" link2="arm_link_4" reason="Adjacent" />
+    <disable_collisions link1="arm_cam3d_camera" link2="arm_link_4" reason="Adjacent" />
 </robot>
