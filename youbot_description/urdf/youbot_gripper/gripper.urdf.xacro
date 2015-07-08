@@ -115,7 +115,7 @@
 
 	  <!-- 3D camera on tower -->
 	  <xacro:asus_xtion_camera name="arm_cam3d" parent="${name}_palm_link" tilt="0.0">
-	    <origin xyz="0.025 0 0.045" rpy="0 -1.5707 3.14159" />
+	    <origin xyz="0.01972 -0.0342 0.0459" rpy="0.02 0.0076 3.094" />
 	  </xacro:asus_xtion_camera>
 
 		<!-- extensions -->
