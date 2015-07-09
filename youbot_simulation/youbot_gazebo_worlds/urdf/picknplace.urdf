@@ -2,8 +2,8 @@
 
   <link name="box1">
     <inertial>
-      <origin xyz="0.12 -0.25 0.0" />
-      <mass value="0.01" />
+      <origin xyz="0.12 -0.25 0.01" />
+      <mass value="0.00001" />
       <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
     </inertial>
     <visual>
@@ -21,6 +21,10 @@
   </link>
 
   <gazebo reference="box1">
+    <kp>1000000.0</kp>
+    <kd>1000000.0</kd>
+    <mu1>1000000.0</mu1>
+    <mu2>1000000.0</mu2>
     <material>Gazebo/Blue</material>
     <selfCollide>true</selfCollide>
   </gazebo>
