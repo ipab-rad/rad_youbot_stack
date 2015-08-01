@@ -1,0 +1,9 @@
+<!-- Launch file starting move base node namespaced.
+-->
+
+<launch>
+
+	<include file="$(find youbot_navigation_local)/launch/move_base_local.launch" ns="$(env ROBOT_NAME)"/>
+
+</launch>
+

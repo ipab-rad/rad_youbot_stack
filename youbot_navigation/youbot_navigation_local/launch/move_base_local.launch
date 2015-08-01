@@ -18,7 +18,7 @@
         <rosparam file="$(find youbot_navigation_common)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
 	
         <!--<rosparam file="$(find youbot_navigation)/navigation_common/base_local_planner_params.yaml" command="load" ns="TrajectoryPlannerROS" />-->
-	<rosparam file="$(find youbot_navigation_local)/params/iros.yaml" command="load"/>
+
         <!-- Load global navigation specific parameters -->
         <!--<rosparam file="$(find youbot_navigation)/navigation_local/config/move_base_params.yaml" command="load" />-->
 	<!-- <rosparam file="$(find youbot_navigation_local)/params/minimal.yaml" command="load" /> -->
