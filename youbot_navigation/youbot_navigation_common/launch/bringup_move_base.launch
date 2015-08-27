@@ -3,7 +3,7 @@
 
 <launch>
 
-	<include file="$(find youbot_navigation_local)/launch/move_base_local.launch" ns="$(env ROBOT_NAME)"/>
+	<include file="$(find youbot_navigation_local)/launch/move_base_local.launch" ns="youbot_4"/>
 
 </launch>
 
