@@ -3,12 +3,14 @@ This scrip provides sensor and joint feedback while performing local costmap nav
 -->
 
 <launch>
-
+        <param name="tf_prefix" type="string" value="$(env ROBOT_NAME)"/>
+        <node name="bumper_kilt" pkg="bumper_kilt" type="run_kilt.py">
+        </node>
         <include file="$(find youbot_driver_ros_interface)/launch/youbot_driver.launch" ns="$(env ROBOT_NAME)" />
         <include file="$(find youbot_driver_ros_interface)/launch/youbot_joint_state_publisher.launch" ns="$(env ROBOT_NAME)" />
         <include file="$(find youbot_navigation_common)/launch/base_front_hokuyo_node.launch" ns="$(env ROBOT_NAME)" />
-        <include file="$(find youbot_navigation_local)/launch/move_base_local.launch" ns="$(env ROBOT_NAME)" />
-
+        <include file="$(find youbot_navigation_global)/launch/amcl.launch" />
+        <include file="$(find youbot_navigation_global)/launch/move_base_global.launch" ns="$(env ROBOT_NAME)" />
 </launch>
 
 

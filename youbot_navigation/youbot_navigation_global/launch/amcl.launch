@@ -1,7 +1,7 @@
 <launch>
 	<!-- Run map server -->
 
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-CropNew.yaml" ns="$(env ROBOT_NAME)">
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-Empty.yaml" ns="$(env ROBOT_NAME)">
       <param name="frame_id" value="$(env ROBOT_NAME)/map" />
    </node>
    
@@ -48,8 +48,8 @@
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->
   <param name="initial_pose_x" value="-8.0" />
-  <param name="initial_pose_y" value="1.5" />
-  <param name="initial_pose_a" value="0.00" />  
+  <param name="initial_pose_y" value="1.1" />
+  <param name="initial_pose_a" value="0.01" />  
 
   <param name="odom_model_type" value="omni"/>
   <param name="odom_alpha5" value="0.1"/>

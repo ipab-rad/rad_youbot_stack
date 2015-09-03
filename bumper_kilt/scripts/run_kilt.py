@@ -79,7 +79,7 @@ class Bumper(object):
             out += r
         if str(out) != "AUTO_MODE\r\n":
             print ""
-            print "MSG: " + [o for o in out]
+            print "MSG: " + str(out)
             raise Exception("Could not set mode to auto!")
         else:
             print("DONE")
