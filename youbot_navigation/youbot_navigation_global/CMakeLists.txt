@@ -3,7 +3,9 @@ project(youbot_navigation_global)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  message_generation
   std_msgs
+  geometry_msgs
   costmap_2d
   dynamic_reconfigure
 )
@@ -15,6 +17,13 @@ catkin_package(
   costmap_2d
   dynamic_reconfigure
   std_msgs
+  geometry_msgs
+)
+
+add_message_files(
+  FILES
+  AgentPrediction.msg
+  AgentPredictions.msg
 )
 
 include_directories(

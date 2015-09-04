@@ -1,10 +1,9 @@
 #ifndef OUTER_LAYER_H
 #define OUTER_LAYER_H_
-#endif
 
-#include <iostream>     // std::cout
-#include <algorithm>    // std::fill
-#include <vector>       // std::vect
+#include <iostream>
+#include <algorithm>
+#include <vector>
 
 #include <ros/ros.h>
 #include <costmap_2d/layer.h>
@@ -13,10 +12,8 @@
 #include <dynamic_reconfigure/server.h>
 #include <std_msgs/Int32MultiArray.h>
 
-namespace outer_layer
-{
-class OuterLayer : public costmap_2d::Layer
-{
+namespace outer_layer {
+class OuterLayer : public costmap_2d::Layer {
  public:
   OuterLayer();
   void receive_layer(const std_msgs::Int32MultiArray::ConstPtr& msg);
@@ -38,12 +35,14 @@ class OuterLayer : public costmap_2d::Layer
   int MATRIX_WIDTH;
   int MATRIX_HEIGHT;
   bool is_matrix_initialised_;
-  void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
-  dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
-  // unsigned char default_value_;
+  void reconfigureCB(costmap_2d::GenericPluginConfig& config, uint32_t level);
+  dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig>* dsrv_;
+
   ros::NodeHandle node_;
   ros::Subscriber sub_;
   double mark_x_, mark_y_;
   std::vector< std::vector<int> > data_matrix;
 };
 }
+
+#endif
