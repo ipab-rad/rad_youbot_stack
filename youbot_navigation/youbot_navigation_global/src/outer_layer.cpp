@@ -13,8 +13,8 @@ OuterLayer::OuterLayer() {}
 
 void OuterLayer::onInitialize()
 {
-  MATRIX_WIDTH = 200;
-  MATRIX_HEIGHT = 200;
+  MATRIX_WIDTH = 20;
+  MATRIX_HEIGHT = 20;
   is_matrix_initialised_ = false;
   data_matrix.resize(MATRIX_HEIGHT, std::vector<int>(MATRIX_WIDTH, 0));
   ros::NodeHandle node;
@@ -45,14 +45,14 @@ void OuterLayer::receive_layer(const std_msgs::Int32MultiArray::ConstPtr& msg)
     data_matrix[r][c] = *m_it; // stil an int
     count++;
   }
-  std::cout << "MSG RECEIVED - Is it 63? ";
+  /*std::cout << "MSG RECEIVED - Is it 63? ";
   if (data_matrix[18][18] == 63)
     {
       std::cout << "Yes! All good." << std::endl;
     }
   else {
     std::cout << "Nope!!! n = " << data_matrix[18][18] << std::endl;
-  }
+  }*/
 }
 
 void OuterLayer::reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level)
@@ -104,7 +104,7 @@ void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int 
 		  << -r << " = "
 		  << (int) value << std::endl;
 */
-	master_grid.setCost(mx, my, value);
+	master_grid.setCost((mx/2.0)+30, (my/2.0)+20, value);
 
       }
     }
