@@ -1,28 +1,24 @@
-#ifndef OUTER_LAYER_H
-#define OUTER_LAYER_H_
-
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#ifndef HINDSIGHT_LAYER_H_
+#define HINDSIGHT_LAYER_H_
 
 #include <ros/ros.h>
 #include <costmap_2d/layer.h>
 #include <costmap_2d/layered_costmap.h>
 #include <costmap_2d/GenericPluginConfig.h>
 #include <dynamic_reconfigure/server.h>
-#include <std_msgs/Int32MultiArray.h>
+#include <std_msgs/Float32MultiArray.h>
 #include <people_msgs/People.h>
 #include <youbot_navigation_global/AgentPrediction.h>
 #include <youbot_navigation_global/InteractivePrediction.h>
 
-namespace outer_layer {
-class OuterLayer : public costmap_2d::Layer {
+namespace foresight_layer {
+
+class ForesightLayer : public costmap_2d::Layer {
  public:
-  OuterLayer();
+  ForesightLayer();
+
   virtual void onInitialize();
 
-  // void layerCB(const std_msgs::Int32MultiArray::ConstPtr& msg);
-  // void peopleCB(const people_msgs::People::ConstPtr& msg);
   void predictCB(
     const youbot_navigation_global::InteractivePrediction::ConstPtr& msg);
 
@@ -53,7 +49,7 @@ class OuterLayer : public costmap_2d::Layer {
   ros::NodeHandle node_;
   ros::Subscriber layer_sub_;
   ros::Subscriber predict_sub_;
-  // people_msgs::People people_msg_;
+
   youbot_navigation_global::InteractivePrediction predict_msg_;
   void reconfigureCB(costmap_2d::GenericPluginConfig& config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig>* dsrv_;

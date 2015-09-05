@@ -2,7 +2,7 @@
 <package>
   <name>youbot_navigation_local</name>
   <version>0.0.0</version>
-  <maintainer email="n.nardelli@sms.ed.ac.uk">Nantas Nardelli</maintainer>
+  <maintainer email="alex.bordallo@gmail.com">GreatAlexander</maintainer>
 
   <license>MIT</license>
 
@@ -27,5 +27,9 @@
   <run_depend>nav_msgs</run_depend>
   <run_depend>costmap_2d</run_depend>
   <run_depend>dynamic_reconfigure</run_depend>
+
+  <export>
+    <costmap_2d plugin="${prefix}/costmap_plugins.xml" />
+  </export>
 
 </package>

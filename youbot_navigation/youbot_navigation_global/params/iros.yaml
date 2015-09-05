@@ -1,7 +1,7 @@
 global_costmap:
  plugins:
    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
-   - {name: outer_layer, type: 'outer_layer::OuterLayer'}
+   # - {name: outer_layer, type: 'outer_layer::OuterLayer'}
    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
 #local_costmap:
 #    plugins:

@@ -27,26 +27,26 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(HindsightLayer
-  src/HindsightLayer.cpp
+add_library(foresight_layer
+  src/foresight_layer.cpp
 )
 
-add_library(AgentsLayer
-  src/AgentsLayer.cpp
+add_library(agents_layer
+  src/agents_layer.cpp
 )
 
-add_executable(AgentsPub
-  src/AgentsPub.cpp
-)
+# add_executable(AgentsPub
+#   src/AgentsPub.cpp
+# )
 
-target_link_libraries(HindsightLayer
+target_link_libraries(foresight_layer
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(AgentsLayer
+target_link_libraries(agents_layer
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(AgentsPub
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(AgentsPub
+#   ${catkin_LIBRARIES}
+# )
