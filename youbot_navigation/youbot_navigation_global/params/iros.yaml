@@ -1,8 +1,10 @@
 global_costmap:
- plugins:
-   - {name: static_layer, type: 'costmap_2d::StaticLayer'}
-   # - {name: outer_layer, type: 'outer_layer::OuterLayer'}
-   - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+  # obstacle_layer:
+  #   observation_sources: base_scan
+  plugins:
+    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+    # - {name: obstacle_layer,  type: 'costmap_2d::ObstacleLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
 #local_costmap:
 #    plugins:
 #      - {name: grid_layer,          type: "grid_layer::GridLayer"}

@@ -3,8 +3,10 @@
 #    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
 #    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
 local_costmap:
-    plugins:
-      # - {name: agents_layer,          type: "agents_layer::AgentsLayer"}
-      - {name: foresight_layer,         type: "foresight_layer::ForesightLayer"}
-      - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
-      - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+  # obstacle_layer:
+  #   observation_sources: base_scan
+  plugins:
+    - {name: foresight_layer,         type: "foresight_layer::ForesightLayer"}
+    - {name: agents_layer,            type: "agents_layer::AgentsLayer"}
+    - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

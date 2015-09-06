@@ -4,12 +4,12 @@
       <description>Layer containing interactive motion predictions</description>
     </class>
   </library>
-<!--   <library path="lib/libagents_layer">
+  <library path="lib/libagents_layer">
     <class type="agents_layer::AgentsLayer" base_class_type="costmap_2d::Layer">
       <description>
         Layer that contains positions of all the agents relative to
         the robot
       </description>
     </class>
-  </library> -->
+  </library>
 </class_libraries>

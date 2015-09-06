@@ -25,8 +25,9 @@
 
         <!-- Load global navigation specific parameters -->
         <!-- <rosparam file="$(find youbot_navigation)/navigation_local/config/move_base_params.yaml" command="load" />-->
+
         <rosparam file="$(find youbot_navigation_local)/params/iros.yaml" command="load"/>
-	    <rosparam file="$(find youbot_navigation_global)/params/iros.yaml" command="load"/>
+<!-- 	    <rosparam file="$(find youbot_navigation_global)/params/iros.yaml" command="load"/> -->
         <rosparam file="$(find youbot_navigation_global)/config/local_costmap_params.yaml" command="load" />
         <rosparam file="$(find youbot_navigation_global)/config/global_costmap_params.yaml" command="load" />
         <rosparam file="$(find youbot_navigation_common)/config/base_local_planner_params.yaml" command="load" />

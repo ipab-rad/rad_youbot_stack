@@ -34,12 +34,20 @@ class ForesightLayer : public costmap_2d::Layer {
                            int min_j,
                            int max_i,
                            int max_j);
+  double gaussian(double x, double y, double x0, double y0, double A);
 
  private:
   // Flags
-  bool costmap_init_;
+  bool save_map_;
 
   // Constants
+  bool costmap_init_;
+  bool do_once_;
+  double def_value_;
+  int g_radius_;
+  double std_dev2_;
+  double min_cost_;
+  double max_cost_;
 
   // Variables
   double mark_x_, mark_y_;

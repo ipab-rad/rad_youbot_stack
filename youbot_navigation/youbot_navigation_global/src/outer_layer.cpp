@@ -29,11 +29,6 @@ void OuterLayer::onInitialize() {
   dsrv_->setCallback(cb);
 }
 
-// void OuterLayer::peopleCB(const people_msgs::People::ConstPtr& msg) {
-//   is_matrix_initialised_ = true;
-//   people_msg_ = *msg;
-// }
-
 void OuterLayer::predictCB(
   const youbot_navigation_global::InteractivePrediction::ConstPtr& msg) {
   costmap_init_ = true;
@@ -51,12 +46,6 @@ void OuterLayer::updateBounds(double origin_x, double origin_y,
   *min_y = std::min(*min_y, (double) - MH);
   *max_x = std::max(*max_x, (double) MW);
   *max_y = std::max(*max_y, (double) MH);
-
-  // std::cout << "OUTER: UPDATE  -> max:"
-  //           << *max_x << ", "
-  //           << *max_y << "; min: "
-  //           << *min_x << ", "
-  //           << *min_y << std::endl;
 }
 
 void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i,
@@ -79,20 +68,6 @@ void OuterLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i,
       }
     }
   }
-
-  // People costmap
-  // size_t n_people = people_msg_.people.size();
-  // if (n_people == 0) {ROS_INFO("There's no-one!");} else {
-  //   for (size_t i = 0; i < people_msg_.people.size(); ++i) {
-  //     int wx = people_msg_.people[i].position.x;
-  //     int wy = people_msg_.people[i].position.y;
-  //     if (master_grid.worldToMap(wx, wy, mx, my)) {
-  //       ROS_INFO("wx: %d, wy: %d, mx: %u, my: %u", wx, wy, mx, my);
-  //       master_grid.setCost(mx, my, costmap_2d::LETHAL_OBSTACLE);
-  //     }
-  //   }
-  // }
-
 }
 
 void OuterLayer::reconfigureCB(costmap_2d::GenericPluginConfig& config,

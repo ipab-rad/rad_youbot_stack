@@ -11,7 +11,6 @@
 #include <costmap_2d/GenericPluginConfig.h>
 #include <dynamic_reconfigure/server.h>
 #include <std_msgs/Int32MultiArray.h>
-#include <people_msgs/People.h>
 #include <youbot_navigation_global/AgentPrediction.h>
 #include <youbot_navigation_global/InteractivePrediction.h>
 
@@ -21,8 +20,6 @@ class OuterLayer : public costmap_2d::Layer {
   OuterLayer();
   virtual void onInitialize();
 
-  // void layerCB(const std_msgs::Int32MultiArray::ConstPtr& msg);
-  // void peopleCB(const people_msgs::People::ConstPtr& msg);
   void predictCB(
     const youbot_navigation_global::InteractivePrediction::ConstPtr& msg);
 

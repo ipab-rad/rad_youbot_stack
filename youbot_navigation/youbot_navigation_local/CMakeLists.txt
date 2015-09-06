@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   dynamic_reconfigure
 )
 
-
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
@@ -35,10 +34,6 @@ add_library(agents_layer
   src/agents_layer.cpp
 )
 
-# add_executable(AgentsPub
-#   src/AgentsPub.cpp
-# )
-
 target_link_libraries(foresight_layer
   ${catkin_LIBRARIES}
 )
@@ -46,7 +41,3 @@ target_link_libraries(foresight_layer
 target_link_libraries(agents_layer
   ${catkin_LIBRARIES}
 )
-
-# target_link_libraries(AgentsPub
-#   ${catkin_LIBRARIES}
-# )
