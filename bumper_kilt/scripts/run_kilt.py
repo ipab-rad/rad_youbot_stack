@@ -180,7 +180,7 @@ class Bumper(object):
         initialised ROS node.
         """
         counter = 0
-        while True:
+        while not rospy.is_shutdown():
             out = ""
             time.sleep(0.05)
             while self.ser.inWaiting() > 0:
