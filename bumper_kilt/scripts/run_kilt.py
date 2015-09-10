@@ -41,7 +41,7 @@ class Bumper(object):
         self.robot = os.environ["ROBOT_NAME"]
         self.nodename = rospy.get_name()
         rospy.loginfo("Starting bumper_kilt node", self.nodename)
-        self.pub = rospy.Publisher(self.robot + '/bumper_kilt',
+        self.pub = rospy.Publisher('bumper_kilt',
                               Int32MultiArray,
                               queue_size=10)
         rospy.init_node(self.robot + "_bumper_kilt_node")
