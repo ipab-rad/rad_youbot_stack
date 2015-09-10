@@ -7,6 +7,8 @@ Configuration stack for YouBots run in the RAD lab
 * `costmap_2d`
 * `youbot_driver`
 * `svenschneider/youbot-manipulation`
+* `moveit`
+* `people-msgs`
 
 # Cloning the repository
 
