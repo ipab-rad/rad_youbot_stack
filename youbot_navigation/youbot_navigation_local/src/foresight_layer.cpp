@@ -13,12 +13,14 @@ ForesightLayer::ForesightLayer() {}
 void ForesightLayer::onInitialize() {
   costmap_init_ = false;
   do_once_ = false;
+  updated_ = false;
   def_value_ = 63;
-  g_radius_ = 20;
+  g_radius_ = 16;
   std_dev2_ = 50.0;
   min_cost_ = 1.0;
   max_cost_ = 127.0;
   save_map_ = false;
+  count_ = 0;
   ros::NodeHandle node;
   ROS_INFO("Interactive Costmap setup");
   predict_sub_ = node.subscribe("/interactive_prediction", 400,
@@ -40,6 +42,7 @@ void ForesightLayer::predictCB(
   const youbot_navigation_global::InteractivePrediction::ConstPtr& msg) {
   costmap_init_ = true;
   predict_msg_ = *msg;
+  updated_ = true;
 }
 
 void ForesightLayer::updateBounds(double origin_x, double origin_y,
@@ -47,8 +50,8 @@ void ForesightLayer::updateBounds(double origin_x, double origin_y,
                                   double* min_y, double* max_x, double* max_y) {
   if (!enabled_)
     return;
-  double MW = 1000.0;
-  double MH = 1000.0;
+  double MW = 2000.0;
+  double MH = 2000.0;
   *min_x = std::min(*min_x, (double) - MW);
   *min_y = std::min(*min_y, (double) - MH);
   *max_x = std::max(*max_x, (double) MW);
@@ -61,46 +64,75 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
   if (!costmap_init_) { return; }
   if (!enabled_) {return;}
   if (!do_once_) {
-    // master_grid.saveMap("test_map.pgm");
     master_grid.setDefaultValue((unsigned char)def_value_);
-    // ROS_INFO_STREAM("DefVal: " << (int)master_grid.getDefaultValue());
     do_once_ = true;
   }
 
-  // Agent prediction cost layer
+  // Agent interactive cost layer
   for (size_t agent = 0; agent < predict_msg_.agent.size(); ++agent) {
-    for (size_t i = 0; i < predict_msg_.foresight; ++i) {
-      double wx = predict_msg_.agent[agent].pose[i].x;
-      double wy = predict_msg_.agent[agent].pose[i].y;
+    for (size_t p = 0; p < predict_msg_.foresight; ++p) {
+      double wx = predict_msg_.agent[agent].pose[p].x;
+      double wy = predict_msg_.agent[agent].pose[p].y;
       size_t mx, my;
       if (master_grid.worldToMap(wx, wy, mx, my)) {
 
-        for (int i = -g_radius_; i < g_radius_; ++i) {
-          for (int j = -g_radius_; j < g_radius_; ++j) {
-            unsigned char old_cost = master_grid.getCost(i + mx, j + my);
+        for (int x = -g_radius_; x < g_radius_; ++x) {
+          for (int y = -g_radius_; y < g_radius_; ++y) {
+            unsigned char old_cost = master_grid.getCost(x + mx, y + my);
             if (old_cost == costmap_2d::NO_INFORMATION) {continue;}
 
-            double a = this->gaussian(i, j, 0, 0, def_value_);
-            if (agent == 0) {
-              double cvalue = def_value_ - a;
-              double new_cost = std::min(cvalue, (double) old_cost);
-              master_grid.setCost(i + mx, j + my,
-                                  (unsigned char) std::max(new_cost, min_cost_));
+            double a = this->gaussian(x, y, 0, 0, def_value_);
+            double new_cost;
+            if ((double)old_cost <= def_value_) {
+              new_cost = (double)old_cost + a;
             } else {
-              double cvalue = def_value_ + a;
-              double new_cost = std::max(cvalue, (double) old_cost);
-              master_grid.setCost(i + mx, j + my,
-                                  (unsigned char) std::min(new_cost, max_cost_));
+              new_cost = std::max(def_value_ + a, (double) old_cost);
+              //new_cost = def_value_ + a;
             }
-            // ROS_INFO_STREAM("CV: " << (int)cvalue << " OC: " << (int)old_cost
-            //                 << " MX: " << (int)std::max(cvalue, old_cost));
+
+            master_grid.setCost(x + mx, y + my,
+                                (unsigned char) std::min(new_cost, max_cost_));
           }
         }
-
       }
     }
   }
-  if (save_map_) {master_grid.saveMap("test_map.pgm");}
+
+  // Planner interactive reward layer
+  // if (updated_) {
+  for (size_t p = 0; p < predict_msg_.foresight; ++p) {
+    double wx = predict_msg_.planner_pose[p].x;
+    double wy = predict_msg_.planner_pose[p].y;
+    size_t mx, my;
+    if (master_grid.worldToMap(wx, wy, mx, my)) {
+
+      for (int x = -g_radius_; x < g_radius_; ++x) {
+        for (int y = -g_radius_; y < g_radius_; ++y) {
+          unsigned char old_cost = master_grid.getCost(x + mx, y + my);
+          if (old_cost == costmap_2d::NO_INFORMATION) {continue;}
+
+          double a = this->gaussian(x, y, 0, 0, def_value_);
+          // double cvalue = def_value_ - a;
+          // double new_cost = std::min(cvalue, (double) old_cost);
+          double new_cost;
+          if ((double)old_cost >= def_value_) {
+            new_cost = (double)old_cost - a;
+          } else {
+            new_cost = std::min(def_value_ - a, (double) old_cost);
+          }
+
+          master_grid.setCost(x + mx, y + my,
+                              (unsigned char) std::max(new_cost, min_cost_));
+        }
+      }
+    }
+  }
+  // }
+  updated_ = false;
+  if (save_map_) {
+    count_++;
+    master_grid.saveMap("test_map_" + boost::to_string(count_) + ".pgm");
+  }
 }
 
 double ForesightLayer::gaussian(double x, double y, double x0, double y0,

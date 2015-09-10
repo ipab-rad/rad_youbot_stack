@@ -7,6 +7,6 @@ local_costmap:
   #   observation_sources: base_scan
   plugins:
     - {name: foresight_layer,         type: "foresight_layer::ForesightLayer"}
-    - {name: agents_layer,            type: "agents_layer::AgentsLayer"}
+    # - {name: agents_layer,            type: "agents_layer::AgentsLayer"}
     - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

@@ -2,6 +2,7 @@
 #define HINDSIGHT_LAYER_H_
 
 #include <ros/ros.h>
+#include <string>
 #include <costmap_2d/layer.h>
 #include <costmap_2d/layered_costmap.h>
 #include <costmap_2d/GenericPluginConfig.h>
@@ -39,6 +40,7 @@ class ForesightLayer : public costmap_2d::Layer {
  private:
   // Flags
   bool save_map_;
+  bool updated_;
 
   // Constants
   bool costmap_init_;
@@ -50,8 +52,7 @@ class ForesightLayer : public costmap_2d::Layer {
   double max_cost_;
 
   // Variables
-  double mark_x_, mark_y_;
-  std::vector< std::vector<int> > data_matrix;
+  size_t count_;
 
   // ROS
   ros::NodeHandle node_;

@@ -33,10 +33,10 @@ class AgentsLayer : public costmap_2d::Layer {
  private:
   // Flags
   bool costmap_init_;
-
   // Constants
   bool do_once_;
-  float p_radius_;
+  int p_radius_;
+  int i_radius_;
   float res;
 
   // Variables

@@ -3,7 +3,7 @@ transform_tolerance: 1.0
 #transform_tolerance: 0.2
 obstacle_range: 3.0
 raytrace_range: 4.0
-inflation_radius: 0.3
+inflation_radius: 0.5
 
 #base_scan_marking: {sensor_frame: base_scan_link,
 #                    data_type: PointCloud2,
