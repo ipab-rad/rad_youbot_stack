@@ -12,7 +12,8 @@ TrajectoryPlannerROS:
 
     # Goal Tolerance Parameters
     xy_goal_tolerance: 0.3
-    yaw_goal_tolerance: 0.2
+    #yaw_goal_tolerance: 0.2
+    yaw_goal_tolerance: 3.0
 
     # Forward Simulation Parameters
     sim_time: 1.7
@@ -24,9 +25,9 @@ TrajectoryPlannerROS:
     # goal_distance_bias: 0.8
     # path_distance_bias: 0.6
     # occdist_scale: 0.01
-    goal_distance_bias: 0.2
-    path_distance_bias: 0.1
-    occdist_scale: 0.8
+    goal_distance_bias: 0.3
+    path_distance_bias: 0.01
+    occdist_scale: 0.9
     heading_lookahead: 0.325
     dwa: true
     publish_cost_grid_pc: false
