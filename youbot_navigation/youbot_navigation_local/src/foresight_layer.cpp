@@ -150,7 +150,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
               double c_cost = cost_layer[off_mx - (int)mx + x_val][off_my - (
                                                                      int)my + y_val];
               // ROS_INFO("c_cost");
-              double a = this->gaussian(x_val, y_val, 0, 0, def_value_);
+              double a = this->gaussian(x_val, y_val, 0, 0, def_value_) / (((float)p / 3.0) + 1.0);
               // ROS_INFO("a");
               double new_cost = std::max(a, c_cost);
               // ROS_INFO("new_cost");
