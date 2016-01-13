@@ -7,7 +7,7 @@ Configuration stack for YouBots run in the RAD lab
 * `youbot_driver`
 
 For bumper_kilt
-* `pyserial`
+* `python-serial`
 
 For picknplace
 * `svenschneider/youbot-manipulation`
