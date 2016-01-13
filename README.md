@@ -3,6 +3,7 @@ Configuration stack for YouBots run in the RAD lab
 
 # Requirements
 
+* `navigation`
 * `costmap_2d`
 * `youbot_driver`
 
