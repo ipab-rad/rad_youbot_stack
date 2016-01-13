@@ -3,11 +3,17 @@ Configuration stack for YouBots run in the RAD lab
 
 # Requirements
 
-* `pyserial`
 * `costmap_2d`
 * `youbot_driver`
+
+For bumper_kilt
+* `pyserial`
+
+For picknplace
 * `svenschneider/youbot-manipulation`
 * `moveit`
+
+For interactive_costmaps
 * `people-msgs`
 
 # Cloning the repository
