@@ -47,8 +47,8 @@
   
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->
-  <param name="initial_pose_x" value="-8.0" />
-  <param name="initial_pose_y" value="1.1" />
+  <param name="initial_pose_x" value="-0.6" />
+  <param name="initial_pose_y" value="0.6" />
   <param name="initial_pose_a" value="0.01" />  
 
   <param name="odom_model_type" value="omni"/>
