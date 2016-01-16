@@ -1,0 +1,11 @@
+<!-- Launch file starting sensing and local navigation nodes.
+This scrip provides sensor and joint feedback while performing local costmap navigation.
+-->
+
+<launch>
+	<param name="$(env ROBOT_NAME)/tf_prefix" value="$(env ROBOT_NAME)" />
+	<include file="$(find youbot_navigation_common)/launch/bringup_navigation_nomovebase.launch"/>
+        <include file="$(find youbot_navigation_global)/launch/amcl.launch"/>
+	<node name="run_kilt" pkg="bumper_kilt" type="run_kilt.py" ns="$(env ROBOT_NAME)" respawn="true"/>
+</launch>
+

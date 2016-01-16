@@ -4,7 +4,7 @@
    <node name="map_server" pkg="map_server" type="map_server" args="$(find youbot_navigation_global)/map/InspaceFull-Empty.yaml" ns="$(env ROBOT_NAME)">
       <param name="frame_id" value="$(env ROBOT_NAME)/map" />
    </node>
-   
+
 
 <!--  Enable to perform SLAM in order to generate a new map  -->
 <!--
@@ -42,14 +42,14 @@
     </node>
 -->
 
- <node pkg="amcl" type="amcl" name="amcl" ns="$(env ROBOT_NAME)"> 
+ <node pkg="amcl" type="amcl" name="amcl" ns="$(env ROBOT_NAME)">
   <remap from="scan" to="base_scan" />
-  
+
   <param name="save_pose_rate" value="0.5" />
 <!--  <param name="use_map_topic" value="true" /> -->
   <param name="initial_pose_x" value="-0.6" />
   <param name="initial_pose_y" value="0.6" />
-  <param name="initial_pose_a" value="0.01" />  
+  <param name="initial_pose_a" value="0.01" />
 
   <param name="odom_model_type" value="omni"/>
   <param name="odom_alpha5" value="0.1"/>
@@ -65,7 +65,7 @@
   <param name="odom_alpha3" value="0.8"/>
   <param name="odom_alpha4" value="0.2"/>
   <param name="laser_z_hit" value="0.9"/> <!-- def. 0.5 -->
-  <param name="laser_z_short" value="0.05"/> 
+  <param name="laser_z_short" value="0.05"/>
   <param name="laser_z_max" value="0.05"/>
   <param name="laser_z_rand" value="0.1"/> <!-- def. 0.5 -->
   <param name="laser_sigma_hit" value="0.2"/>
@@ -83,5 +83,5 @@
   <param name="recovery_alpha_fast" value="0.1"/> <!-- def. 0.0 -->
 </node>
 
- 
+
 </launch>
