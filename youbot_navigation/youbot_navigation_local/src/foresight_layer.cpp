@@ -104,7 +104,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
   }
 
   if ((max_wx > min_wx) || (max_wy > min_wy)) {
-    size_t min_mx, min_my, max_mx, max_my;
+    uint min_mx, min_my, max_mx, max_my;
     master_grid.worldToMap(min_wx, min_wy, min_mx, min_my);
     master_grid.worldToMap(max_wx, max_wy, max_mx, max_my);
 
@@ -138,7 +138,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
         double wx = (double)predict_msg.agent[agent].pose[p].x;
         double wy = (double)predict_msg.agent[agent].pose[p].y;
         // ROS_INFO_STREAM("Here-2 x: " << wx << " y: " << wy);
-        size_t mx, my;
+        uint mx, my;
         if (master_grid.worldToMap(wx, wy, mx, my)) {
 
           for (int y = 0; y <= g_radius_ * 2; ++y) {
@@ -173,7 +173,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
     for (size_t p = 0; p < predict_msg.foresight; ++p) {
       double wx = predict_msg.planner_pose[p].x;
       double wy = predict_msg.planner_pose[p].y;
-      size_t mx, my;
+      uint mx, my;
       if (master_grid.worldToMap(wx, wy, mx, my)) {
 
         for (int y = 0; y <= g_radius_ * 2; ++y) {
@@ -192,8 +192,8 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
     // Cost and Reward layer addition
     for (int ly = 0; ly < layer_size_y; ++ly) {
       for (int lx = 0; lx < layer_size_x; ++lx) {
-        size_t mx = min_mx + (layer_size_x - lx) - g_radius_;
-        size_t my = min_my + (layer_size_y - ly) - g_radius_;
+        uint mx = min_mx + (layer_size_x - lx) - g_radius_;
+        uint my = min_my + (layer_size_y - ly) - g_radius_;
         // double wx, wy;
         // master_grid.mapToWorld(mx, my, wx, wy);
         double f_cost = cost_layer[lx][ly] + reward_layer[lx][ly] + def_value_;

@@ -56,8 +56,8 @@ void AgentsLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
   if (!enabled_) {return;}
   if (!do_once_) {res = master_grid.getResolution();}
 
-  size_t mx;
-  size_t my;
+  uint mx;
+  uint my;
 
   // People costmap
   size_t n_people = people_msg_.people.size();
