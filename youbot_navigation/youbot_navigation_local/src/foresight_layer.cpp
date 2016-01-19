@@ -21,6 +21,7 @@ void ForesightLayer::onInitialize() {
   min_cost_ = 1.0; // DO NOT CHANGE!
   max_cost_ = 127.0; // DO NOT CHANGE!
   count_ = 0; // DO NOT CHANGE!
+  debug_ = true; // You may change this
   ros::NodeHandle node;
   ROS_INFO("Interactive Costmap setup");
   predict_sub_ = node.subscribe("model/interactive_prediction", 400,
@@ -68,7 +69,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
     master_grid.setDefaultValue((unsigned char)def_value_);
     do_once_ = true;
   }
-  ROS_INFO("BeginCostmap");
+  if (debug_) {ROS_INFO("BeginCostmap");}
 
   float min_wx = 20.0f;
   float min_wy = 20.0f;
@@ -97,24 +98,29 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
     max_wy = std::max((float)predict_msg.planner_pose[p].y, max_wy);
   }
 
-  ROS_INFO_STREAM("MinWX: " << min_wx << " MinWY: " << min_wy);
-  ROS_INFO_STREAM("MaxWX: " << max_wx << " MaxWY: " << max_wy);
+  if (debug_) {
+    ROS_INFO_STREAM("MinWX: " << min_wx << " MinWY: " << min_wy);
+    ROS_INFO_STREAM("MaxWX: " << max_wx << " MaxWY: " << max_wy);
+  }
 
   if ((max_wx > min_wx) || (max_wy > min_wy)) {
     size_t min_mx, min_my, max_mx, max_my;
     master_grid.worldToMap(min_wx, min_wy, min_mx, min_my);
     master_grid.worldToMap(max_wx, max_wy, max_mx, max_my);
 
-    ROS_INFO_STREAM("MaxMX: " << max_mx << " MaxMY: " << max_my);
-    ROS_INFO_STREAM("MinMX: " << min_mx << " MinMY: " << min_my);
+    if (debug_) {
+      ROS_INFO_STREAM("MaxMX: " << max_mx << " MaxMY: " << max_my);
+      ROS_INFO_STREAM("MinMX: " << min_mx << " MinMY: " << min_my);
+    }
 
     size_t layer_size_x = (max_mx + g_radius_) - (min_mx - g_radius_) + 1;
     size_t layer_size_y = (max_my + g_radius_) - (min_my - g_radius_) + 1;
     int off_mx = max_mx + g_radius_;
     int off_my = max_my + g_radius_;
 
-    ROS_INFO_STREAM("LSizeX: " << layer_size_x << " LSizeY: " << layer_size_y);
-
+    if (debug_) {
+      ROS_INFO_STREAM("LSizeX: " << layer_size_x << " LSizeY: " << layer_size_y);
+    }
     double cost_layer[layer_size_x][layer_size_y];
     double reward_layer[layer_size_x][layer_size_y];
 
@@ -264,7 +270,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
   //   }
   // }
   // }
-  ROS_INFO("EndCostmap");
+  if (debug_) {ROS_INFO("EndCostmap");}
   updated_ = false;
   if (save_map_) {
     count_++;

@@ -39,6 +39,7 @@ class ForesightLayer : public costmap_2d::Layer {
 
  private:
   // Flags
+  bool debug_;
   bool save_map_;
   bool updated_;
 
