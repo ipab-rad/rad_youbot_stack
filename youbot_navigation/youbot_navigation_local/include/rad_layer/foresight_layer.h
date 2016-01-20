@@ -9,8 +9,8 @@
 #include <dynamic_reconfigure/server.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <people_msgs/People.h>
-#include <youbot_navigation_global/AgentPrediction.h>
-#include <youbot_navigation_global/InteractivePrediction.h>
+#include <model_msgs/AgentPrediction.h>
+#include <model_msgs/InteractivePrediction.h>
 
 namespace foresight_layer {
 
@@ -21,7 +21,7 @@ class ForesightLayer : public costmap_2d::Layer {
   virtual void onInitialize();
 
   void predictCB(
-    const youbot_navigation_global::InteractivePrediction::ConstPtr& msg);
+    const model_msgs::InteractivePrediction::ConstPtr& msg);
 
   virtual void updateBounds(double origin_x,
                             double origin_y,
@@ -60,7 +60,7 @@ class ForesightLayer : public costmap_2d::Layer {
   ros::Subscriber layer_sub_;
   ros::Subscriber predict_sub_;
 
-  youbot_navigation_global::InteractivePrediction predict_msg_;
+  model_msgs::InteractivePrediction predict_msg_;
   void reconfigureCB(costmap_2d::GenericPluginConfig& config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig>* dsrv_;
 };

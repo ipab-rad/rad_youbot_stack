@@ -40,7 +40,7 @@ void ForesightLayer::onInitialize() {
 }
 
 void ForesightLayer::predictCB(
-  const youbot_navigation_global::InteractivePrediction::ConstPtr& msg) {
+  const model_msgs::InteractivePrediction::ConstPtr& msg) {
   costmap_init_ = true;
   predict_msg_ = *msg;
   updated_ = true;
@@ -76,7 +76,7 @@ void ForesightLayer::updateCosts(costmap_2d::Costmap2D& master_grid,
   float max_wx = -20.0f;
   float max_wy = -20.0f;
 
-  youbot_navigation_global::InteractivePrediction predict_msg = predict_msg_;
+  model_msgs::InteractivePrediction predict_msg = predict_msg_;
   // Get min/max wx, wy values;
   // ROS_INFO_STREAM("ASize1: " << predict_msg.agent.size());
   for (size_t agent = 0; agent < predict_msg.agent.size(); ++agent) {

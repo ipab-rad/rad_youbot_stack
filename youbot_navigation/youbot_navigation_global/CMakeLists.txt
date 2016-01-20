@@ -3,7 +3,7 @@ project(youbot_navigation_global)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  message_generation
+  # message_generation
   std_msgs
   geometry_msgs
   people_msgs
@@ -11,16 +11,16 @@ find_package(catkin REQUIRED COMPONENTS
   dynamic_reconfigure
 )
 
-add_message_files(
-  FILES
-  AgentPrediction.msg
-  InteractivePrediction.msg
-)
+# add_message_files(
+#   FILES
+#   AgentPrediction.msg
+#   InteractivePrediction.msg
+# )
 
-generate_messages(
-  DEPENDENCIES
-  geometry_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   geometry_msgs
+# )
 
 catkin_package(
   INCLUDE_DIRS include

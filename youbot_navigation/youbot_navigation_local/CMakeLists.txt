@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   costmap_2d
   dynamic_reconfigure
+  model_msgs
 )
 
 ## DEPENDS: system dependencies of this project that dependent projects also need
@@ -41,3 +42,9 @@ target_link_libraries(foresight_layer
 target_link_libraries(agents_layer
   ${catkin_LIBRARIES}
 )
+
+add_dependencies(foresight_layer
+  model_msgs_gencpp)
+
+add_dependencies(agents_layer
+  model_msgs_gencpp)
